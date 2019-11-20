@@ -7,7 +7,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
-public class HelloWorldInitializer implements WebApplicationInitializer {
+public class AppInitializer implements WebApplicationInitializer {
 
     public void onStartup(ServletContext container) throws ServletException {
 
