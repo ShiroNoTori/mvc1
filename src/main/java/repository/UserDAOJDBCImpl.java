@@ -2,6 +2,7 @@ package repository;
 
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@Qualifier("JDBC")
 public class UserDAOJDBCImpl implements UserDAO {
 
     private DriverManagerDataSource dataSource;

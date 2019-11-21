@@ -29,7 +29,7 @@ public class AppConfiguration {
         return viewResolver;
     }
 
-    /*@Bean
+    @Bean
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
@@ -37,10 +37,10 @@ public class AppConfiguration {
         dataSource.setUsername("root");
         dataSource.setPassword("1Vectorcontrol");
         return dataSource;
-    }*/
+    }
 
     @Bean
-    public SessionFactory configuration() {
+    public SessionFactory sessionFactory() {
         org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration();
         configuration.addAnnotatedClass(User.class);
 
