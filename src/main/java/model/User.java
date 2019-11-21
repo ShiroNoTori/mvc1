@@ -7,13 +7,13 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
 
-    String name;
-    String password;
+    private String name;
+    private String password;
 
     @Column(unique = true)
-    String login;
+    private String login;
 
     public User() {
 
