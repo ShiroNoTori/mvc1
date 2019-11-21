@@ -4,20 +4,19 @@ import model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-@Qualifier("Hibernate")
-public class UserDAOHibernateImpl implements UserDAO {
+@Transactional
+public class UserDAOImpl implements UserDAO {
 
     private SessionFactory sessionFactory;
 
     @Autowired
-    public UserDAOHibernateImpl(SessionFactory sessionFactory) {
+    public UserDAOImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
@@ -29,7 +28,6 @@ public class UserDAOHibernateImpl implements UserDAO {
     public void save(User user) {
         Session session = getSession();
         session.persist(user);
-        session.close();
     }
 
     @Override
@@ -37,7 +35,6 @@ public class UserDAOHibernateImpl implements UserDAO {
         Session session = getSession();
 
         session.update(user);
-        session.close();
     }
 
     @Override
@@ -45,9 +42,7 @@ public class UserDAOHibernateImpl implements UserDAO {
     public List<User> findAll() {
         Session session = getSession();
 
-        //List<User> list = session.createQuery("from User").list();
-        List<User> list = new ArrayList<>();
-        session.close();
+        List<User> list = session.createQuery("from User").list();
         return list;
     }
 
@@ -56,7 +51,6 @@ public class UserDAOHibernateImpl implements UserDAO {
         Session session = getSession();
 
         User user = session.load(User.class, id);
-        session.close();
         return user;
     }
 
@@ -65,7 +59,7 @@ public class UserDAOHibernateImpl implements UserDAO {
         Session session = getSession();
 
         User user = session.load(User.class, id);
-        if(null != user){
+        if (null != user) {
             session.delete(user);
         }
     }
