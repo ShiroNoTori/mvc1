@@ -32,9 +32,9 @@ public class AdminController {
                           @RequestParam(name = "name") String name,
                           @RequestParam(name = "password") String password,
                           @RequestParam(name = "role") String roleName) {
-        Role role = roleService.findByName(roleName);
+        /*Role role = roleService.findByName(roleName);
         User user = new User(login, name, encoder.encode(password), role.getId());
-        userService.save(user);
+        userService.save(user);*/
         return "redirect:/admin/all";
     }
 

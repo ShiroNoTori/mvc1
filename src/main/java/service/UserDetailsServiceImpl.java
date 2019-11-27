@@ -30,7 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("Login " + login + " not found.");
         }
 
-        Role role = roleService.findById(user.getRoleId());
+        Role role = roleService.findById(1);
 
         Set<GrantedAuthority> roles = new HashSet();
         roles.add(new SimpleGrantedAuthority(role.getName()));
