@@ -5,16 +5,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.security.Principal;
-
 @Controller
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/login")
+public class LoginController {
 
     @GetMapping
-    public String index(Model model, Principal principal) {
-        model.addAttribute("name", principal.getName());
-        return "userIndex";
+    public String index(Model model) {
+        return "userAuth";
     }
-
 }

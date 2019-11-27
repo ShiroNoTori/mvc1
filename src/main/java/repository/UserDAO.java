@@ -14,5 +14,7 @@ public interface UserDAO {
 
     User findById(Integer id);
 
+    User findByLogin(String login);
+
     void deleteById(Integer id);
 }

@@ -5,7 +5,7 @@
 </head>
 <body>
     <jsp:useBean id="user" scope="request" type="model.User"/>
-    <form action="/user/update/" method="post">
+    <form action="/admin/update/" method="post">
         <input type="hidden" name="id" value="${user.id}">
         <label>
             Name
@@ -13,7 +13,7 @@
         </label>
         <label>
             Password
-            <input type="text" name="password" value="${user.password}"/>
+            <input type="text" name="password" value=""/>
         </label>
         <input type="submit" value="saveChanges">
     </form>

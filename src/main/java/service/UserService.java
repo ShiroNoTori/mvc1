@@ -33,6 +33,10 @@ public class UserService {
         return dao.findById(id);
     }
 
+    public User findByLogin(String login) {
+        return dao.findByLogin(login);
+    }
+
     public void deleteById(Integer id) {
         dao.deleteById(id);
     }

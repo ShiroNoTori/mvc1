@@ -1,13 +1,17 @@
 package repository;
 
+import model.Role;
 import model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.function.Function;
 
 @Repository
 @Transactional
@@ -52,6 +56,15 @@ public class UserDAOImpl implements UserDAO {
 
         User user = session.load(User.class, id);
         return user;
+    }
+
+    @Override
+    public User findByLogin(String login) {
+        Session session = getSession();
+
+        Query query = session.createQuery("from User where login = :login");
+        query.setParameter("login", login);
+        return (User) query.uniqueResult();
     }
 
     @Override

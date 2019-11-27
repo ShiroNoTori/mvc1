@@ -7,7 +7,7 @@
 <body>
 
 <div style="width: 80%;" align="center">
-<a href="/user/add">Add new user</a>
+<a href="/admin/add">Add new user</a>
 <br>
 
 <table border="1" width="80%">
@@ -26,14 +26,14 @@
             <td>${user.getId()}</td>
             <td>${user.getLogin()}</td>
             <td>${user.getName()}</td>
-            <td>${user.getPassword()}</td>
+            <td>***</td>
             <td>
-                <a href="/user/update/${user.getId()}">
+                <a href="/admin/update/${user.getId()}">
                     <input type="button" value="update" style="width: 100%; height: 100%;">
                 </a>
             </td>
             <td>
-                <a href="/user/delete/${user.getId()}">
+                <a href="/admin/delete/${user.getId()}">
                     <input type="button" value="delete" style="width: 100%; height: 100%;">
                 </a>
             </td>

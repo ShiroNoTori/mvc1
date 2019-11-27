@@ -1,6 +1,7 @@
 package model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 public class User {
@@ -15,6 +16,9 @@ public class User {
     @Column(unique = true)
     private String login;
 
+    @Column(name = "role_id")
+    private int roleId;
+
     public User() {
 
     }
@@ -25,11 +29,26 @@ public class User {
         this.password = password;
     }
 
+    public User(String login, String name, String password, int roleId) {
+        this.login = login;
+        this.name = name;
+        this.password = password;
+        this.roleId = roleId;
+    }
+
     public User(int id, String login, String name, String password) {
         this.id = id;
         this.login = login;
         this.name = name;
         this.password = password;
+    }
+
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 
     public int getId() {
@@ -63,6 +82,7 @@ public class User {
     public void setLogin(String login) {
         this.login = login;
     }
+
 
     @Override
     public String toString() {
