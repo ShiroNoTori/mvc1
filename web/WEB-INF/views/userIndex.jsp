@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ifactor
-  Date: 27.11.2019
-  Time: 17:23
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -13,5 +7,9 @@
 <body>
     <jsp:useBean id="name" scope="request" type="java.lang.String"/>
     <p>Hello, ${name}</p>
+    <sec:authorize access="hasRole('ADMIN')">
+        <br>
+        <a href="/admin/all">Admin page</a>
+    </sec:authorize>
 </body>
 </html>

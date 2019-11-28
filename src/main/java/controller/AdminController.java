@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import service.RoleService;
 import service.UserService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -32,9 +35,14 @@ public class AdminController {
                           @RequestParam(name = "name") String name,
                           @RequestParam(name = "password") String password,
                           @RequestParam(name = "role") String roleName) {
-        /*Role role = roleService.findByName(roleName);
-        User user = new User(login, name, encoder.encode(password), role.getId());
-        userService.save(user);*/
+        List<Role> roles = new ArrayList<Role>();
+        roles.add(roleService.findByName(roleName));
+        if (roleName.contains("ADMIN")) {
+            roles.add(roleService.findByName("ROLE_USER"));
+        }
+
+        User user = new User(login, name, encoder.encode(password), roles);
+        userService.save(user);
         return "redirect:/admin/all";
     }
 

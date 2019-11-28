@@ -1,15 +1,12 @@
 package repository;
 
 import model.Role;
-import model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Repository
 @Transactional
@@ -36,7 +33,7 @@ public class RoleDAOImpl implements RoleDAO {
     public Role findByName(String name) {
         Session session = getSession();
 
-        Query query = session.createQuery("from User where name = :name");
+        Query query = session.createQuery("from Role where name = :name");
         query.setParameter("name", name);
         return (Role) query.uniqueResult();
     }
