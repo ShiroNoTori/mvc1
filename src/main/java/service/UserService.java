@@ -2,15 +2,21 @@ package service;
 
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import repository.UserDAO;
 
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private UserDAO dao;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     public void setDao(UserDAO dao) {
@@ -39,5 +45,16 @@ public class UserService {
 
     public void deleteById(Integer id) {
         dao.deleteById(id);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        User user = userService.findByLogin(login);
+
+        if (user == null) {
+            throw new UsernameNotFoundException("Login " + login + " not found.");
+        }
+
+        return user;
     }
 }
